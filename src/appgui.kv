@@ -1,0 +1,24 @@
+#:kivy 2.0
+
+<ContainerGrid>:
+    rows: 3
+    padding: 25
+    spacing: 10
+
+    BoxLayout:
+        height: 36
+        size_hint_y: None
+        GridLayout:
+            cols: 2
+            Label:
+                size_hint_x: .15
+                width: 25
+                text: "URL"
+            TextInput:
+                font_size: 18
+                text:""
+                multiline: False
+
+    BoxLayout:
+        Button:
+            text: "Convert"

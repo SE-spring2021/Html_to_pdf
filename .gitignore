@@ -7,4 +7,5 @@
 *.tar.gz
 *.rar
 .venv/**
+.env
 
