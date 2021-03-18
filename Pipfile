@@ -5,6 +5,9 @@ name = "pypi"
 
 [packages]
 kivy = {extras = ["base"], version = "*"}
+scrapy = "*"
+requests = "*"
+beautifulsoup4 = "*"
 
 [dev-packages]
 
