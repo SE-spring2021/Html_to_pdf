@@ -40,8 +40,9 @@
 
     BoxLayout:
         height: 36
+        size_hint_y: None
         Button:
-            size_hint_x: .25
+            # size_hint_y: .13
             text: "Convert"
             on_release: root.callback(self)
 
@@ -50,6 +51,6 @@
         size_hint_y: None
         TextInput:
             id: txt_input_result
-            font_size: 18
+            font_size: 14
             text:"Links:"
             multiline: True
