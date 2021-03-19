@@ -1,7 +1,10 @@
 #:kivy 2.0
 
 <ContainerGrid>:
-    rows: 3
+    digLevel: txt_input_level
+    baseUrl: txt_input_url
+    txtResults: txt_input_result
+    rows: 4
     padding: 25
     spacing: 10
 
@@ -15,8 +18,9 @@
                 width: 25
                 text: "URL"
             TextInput:
+                id: txt_input_url
                 font_size: 18
-                text:""
+                text:"http://www.google.com"
                 multiline: False
     BoxLayout:
         height: 36
@@ -28,10 +32,24 @@
                 width: 25
                 text: "Digging Level"
             TextInput:
+                id: txt_input_level
                 font_size: 18
                 text:"3"
                 multiline: False
 
+
     BoxLayout:
+        height: 36
         Button:
+            size_hint_x: .25
             text: "Convert"
+            on_release: root.callback(self)
+
+    BoxLayout:
+        height: 250
+        size_hint_y: None
+        TextInput:
+            id: txt_input_result
+            font_size: 18
+            text:"Links:"
+            multiline: True

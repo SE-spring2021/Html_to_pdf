@@ -8,6 +8,7 @@ kivy = {extras = ["base"], version = "*"}
 scrapy = "*"
 requests = "*"
 beautifulsoup4 = "*"
+weasyprint = "*"
 
 [dev-packages]
 
