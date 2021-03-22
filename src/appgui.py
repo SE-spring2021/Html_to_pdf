@@ -32,6 +32,7 @@ class ContainerGrid(GridLayout):
 class AppGui(App):
     def build(self):
         Window.size = (600,500)
+        self.title = "HTML To PDF Converter"
         container = ContainerGrid()
         return container
         # return Button(text='Hello World',)
