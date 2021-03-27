@@ -6,9 +6,14 @@
 *.zip
 *.tar.gz
 *.rar
+# Environment Files
 .venv/**
 .env
 .vscode/**
 PDFEnv/
 .idea/
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
 

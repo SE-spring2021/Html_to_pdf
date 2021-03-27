@@ -5,7 +5,6 @@ name = "pypi"
 
 [packages]
 kivy = {extras = ["base"], version = "*"}
-scrapy = "*"
 requests = "*"
 beautifulsoup4 = "*"
 weasyprint = "*"
