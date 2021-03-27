@@ -17,15 +17,33 @@ class Crawler():
         return links
 
     def get_links_by_level(self, url, level):
-        pass
+        links = set()
+        links_visited = set()
+        links.add(url)
+        index = 0
+        while len(links) > 0 and index < level:
+            url = links.pop()
+            links.update(self.get_links(url))
+            links_visited.add(url)
+            # index += 1
+
+        return links_visited
+        
 
 def main():
     crwl = Crawler()
-    links = crwl.get_links("https://www.w3schools.com/java/")
-    for link in links:
-        print(link)
+    crwl.get_links_by_level("https://www.google.com",2)
+    # links = crwl.get_links("https://www.w3schools.com/java/")
+    # for link in links:
+    #     print(link)
 
-    
+class WebPage:
+    def __init__(self,level, url):
+        
+        self.level = level
+        self.url = url
+        self.html = ""
+        self.links = set()
 
 if __name__ == "__main__":
         main()  
