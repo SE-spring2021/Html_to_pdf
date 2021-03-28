@@ -37,13 +37,5 @@ def main():
     # for link in links:
     #     print(link)
 
-class WebPage:
-    def __init__(self,level, url):
-        
-        self.level = level
-        self.url = url
-        self.html = ""
-        self.links = set()
-
 if __name__ == "__main__":
         main()  
