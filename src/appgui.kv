@@ -1,0 +1,56 @@
+#:kivy 2.0
+
+<ContainerGrid>:
+    digLevel: txt_input_level
+    baseUrl: txt_input_url
+    txtResults: txt_input_result
+    rows: 4
+    padding: 25
+    spacing: 10
+
+    BoxLayout:
+        height: 36
+        size_hint_y: None
+        GridLayout:
+            cols: 2
+            Label:
+                size_hint_x: .15
+                width: 25
+                text: "URL"
+            TextInput:
+                id: txt_input_url
+                font_size: 18
+                text:"http://www.google.com"
+                multiline: False
+    BoxLayout:
+        height: 36
+        size_hint_y: None
+        GridLayout:
+            cols: 2
+            Label:
+                size_hint_x: .25
+                width: 25
+                text: "Digging Level"
+            TextInput:
+                id: txt_input_level
+                font_size: 18
+                text:"3"
+                multiline: False
+
+
+    BoxLayout:
+        height: 36
+        size_hint_y: None
+        Button:
+            # size_hint_y: .13
+            text: "Convert"
+            on_release: root.callback(self)
+
+    BoxLayout:
+        height: 250
+        # size_hint_y: None
+        TextInput:
+            id: txt_input_result
+            font_size: 14
+            text:"Links:"
+            multiline: True
