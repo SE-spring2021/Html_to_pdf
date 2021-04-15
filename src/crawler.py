@@ -1,5 +1,3 @@
-# from bs4 import BeautifulSoup
-# import requests
 import re
 import threading
 
@@ -53,9 +51,9 @@ class Crawler():
         
 
 def main():
-    # crwl = Crawler("https://www.google.com")
+    crwl = Crawler("https://www.google.com")
     # crwl = Crawler("https://andersonsunflowers.com")
-    crwl = Crawler("https://www.google.com/")
+    # crwl = Crawler("https://www.shanelynn.ie/")
     pages = crwl.download_pages(2)
     print(pages.htmlContent)
 
