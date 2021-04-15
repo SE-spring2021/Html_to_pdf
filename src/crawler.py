@@ -55,7 +55,8 @@ def main():
     # crwl = Crawler("https://andersonsunflowers.com")
     # crwl = Crawler("https://www.shanelynn.ie/")
     pages = crwl.download_pages(2)
-    print(pages.htmlContent)
+    with open("CrawledHTML.html", "w") as f:
+            f.write(str(pages.htmlContent))
 
 if __name__ == "__main__":
         main()  
