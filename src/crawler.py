@@ -2,12 +2,15 @@ import re
 import threading
 
 from models.htmlModel import HtmlModel
+from helper import Helper
+
 
 
 class Crawler():
 
     def __init__(self,baseUrl, sameDomain=True):
         self.rootPage = HtmlModel(0,baseUrl)
+        self.domain = Helper.getDomain(baseUrl)
         self.sameDomain = sameDomain
         self.links_visited = set()
 
@@ -45,7 +48,7 @@ class Crawler():
             return False
         self.links_visited.add(link)
         if(self.sameDomain):
-            return bool(re.match("^{}".format(self.rootPage.url), link))
+            return bool(re.match("^http(s)?:\/\/\w*.*({}){{1}}".format(self.domain), link))
         return True
 
         

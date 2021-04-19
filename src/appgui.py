@@ -10,6 +10,7 @@ from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
 
 from crawler import Crawler
+from helper import Helper
 
 
 
@@ -17,15 +18,16 @@ class ContainerGrid(GridLayout):
     digLevel = ObjectProperty(None)
     baseUrl = ObjectProperty(None)
     txtResults = ObjectProperty(None)
-    crwl = Crawler()
+    chbSameDomain = ObjectProperty(None)
+    crwl : Crawler
     
     def callback(self, instance):
+        self.crwl = Crawler(self.baseUrl.text)
         result = "Links:\n"
-        links = self.crwl.get_links(self.baseUrl.text)
-        for link in links:
-            result+=link+"\n"
+        rootPage = self.crwl.download_pages(2)
+        print(rootPage)
 
-        self.txtResults.text = result
+        self.txtResults.text = Helper.printPagesTitles(rootPage)
         
 
 
