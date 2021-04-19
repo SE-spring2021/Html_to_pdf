@@ -22,7 +22,7 @@ class ContainerGrid(GridLayout):
     crwl : Crawler
     
     def callback(self, instance):
-        self.crwl = Crawler(self.baseUrl.text)
+        self.crwl = Crawler(self.baseUrl.text, self.chbSameDomain.active)
         result = "Links:\n"
         rootPage = self.crwl.download_pages(2)
         print(rootPage)
