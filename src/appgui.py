@@ -27,7 +27,7 @@ class ContainerGrid(GridLayout):
         rootPage = self.crwl.download_pages(2)
         print(rootPage)
 
-        self.txtResults.text = "Downloded Pages:\n\n" + Helper.printPagesTitles(rootPage)
+        self.txtResults.text = "Downloaded Pages:\n\n" + Helper.printPagesTitles(rootPage)
         
 
 
