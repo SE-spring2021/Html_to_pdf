@@ -11,6 +11,7 @@ from kivy.properties import ObjectProperty
 
 from crawler import Crawler
 from helper import Helper
+from convertor import Convertor
 
 
 
@@ -20,13 +21,15 @@ class ContainerGrid(GridLayout):
     txtResults = ObjectProperty(None)
     chbSameDomain = ObjectProperty(None)
     crwl : Crawler
+    Conve = Convertor()
     
     def callback(self, instance):
         self.crwl = Crawler(self.baseUrl.text, self.chbSameDomain.active)
         result = "Links:\n"
         rootPage = self.crwl.download_pages(2)
         print(rootPage)
-
+        for page in rootPage.links:
+            check = self.Conve.convertToPdf(str(page))
         self.txtResults.text = "Downloaded Pages:\n\n" + Helper.printPagesTitles(rootPage)
         
 
