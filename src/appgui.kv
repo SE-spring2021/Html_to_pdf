@@ -4,6 +4,7 @@
     digLevel: txt_input_level
     baseUrl: txt_input_url
     txtResults: txt_input_result
+    chbSameDomain: chb_same_domain
     rows: 4
     padding: 25
     spacing: 10
@@ -20,22 +21,32 @@
             TextInput:
                 id: txt_input_url
                 font_size: 18
-                text:"http://www.google.com"
+                text:"https://www.martinfowler.com/"
                 multiline: False
     BoxLayout:
         height: 36
         size_hint_y: None
         GridLayout:
-            cols: 2
+            cols: 4
             Label:
                 size_hint_x: .25
                 width: 25
                 text: "Digging Level"
             TextInput:
                 id: txt_input_level
+                size_hint_x: .25
                 font_size: 18
                 text:"3"
                 multiline: False
+            Label:
+                size_hint_x: .25
+                width: 25
+                text: "Same Domain"
+            CheckBox:
+                id: chb_same_domain
+                size_hint_x: .25
+                active: True
+                
 
 
     BoxLayout:

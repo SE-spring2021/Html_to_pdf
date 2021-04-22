@@ -1,41 +1,64 @@
-from bs4 import BeautifulSoup
-import requests
 import re
+import threading
+
+from models.htmlModel import HtmlModel
+from helper import Helper
+
 
 
 class Crawler():
-    
-    def get_contents(self, url:str):
-        return requests.get(url)
 
-    def get_links(self, url:str):
-        links = set()
-        respons = requests.get(url)
-        soup = BeautifulSoup(respons.content, 'html.parser')
-        for link in soup.find_all('a', attrs={'href': re.compile("^http(s)*://")}):
-            links.add(link.get('href'))
-        return links
+    def __init__(self,baseUrl, sameDomain=True):
+        self.rootPage = HtmlModel(0,baseUrl)
+        self.domain = Helper.getDomain(baseUrl)
+        self.sameDomain = sameDomain
+        self.links_visited = set()
 
-    def get_links_by_level(self, url, level):
-        links = set()
-        links_visited = set()
-        links.add(url)
-        index = 0
-        while len(links) > 0 and index < level:
-            url = links.pop()
-            links.update(self.get_links(url))
-            links_visited.add(url)
-            # index += 1
 
-        return links_visited
+    def download_pages(self, level:int):
+        pages = set()
+        pages.add(self.rootPage)
+
+        threads = set()
+        while pages:
+            page = pages.pop()
+
+            for link in page.links:
+                if(self.valid_link(link)):
+                    linkPage = HtmlModel(page.level+1,link)
+                    page.children.add(linkPage)
+                    # th = threading.Thread(target=HtmlModel, args=(htmlPage.level+1, link))
+                    # threads.add(th)
+                    # th.start()
+                    # links_visited.add(link)
+                    if(linkPage.level<level):
+                        pages.add(linkPage)
+
+                else:
+                    pass
+                    # print(link)
+            # for th in threads:
+            #     th.join()
+                # print(th.name)
+            # print(self.rootPage)
+        return self.rootPage
+
+    def valid_link(self, link:str):
+        if(link in self.links_visited):
+            return False
+        self.links_visited.add(link)
+        if(self.sameDomain):
+            return bool(re.match("^http(s)?:\/\/\w*.*({}){{1}}".format(self.domain), link))
+        return True
+
         
 
 def main():
-    crwl = Crawler()
-    crwl.get_links_by_level("https://www.google.com",2)
-    # links = crwl.get_links("https://www.w3schools.com/java/")
-    # for link in links:
-    #     print(link)
+    # crwl = Crawler("https://www.google.com")
+    # crwl = Crawler("https://andersonsunflowers.com")
+    crwl = Crawler("https://www.shanelynn.ie/")
+    pages = crwl.download_pages(1)
+    print("test")
 
 if __name__ == "__main__":
         main()  
