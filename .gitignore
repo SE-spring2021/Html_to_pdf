@@ -6,6 +6,8 @@
 *.zip
 *.tar.gz
 *.rar
+build/**
+dist/**
 # Environment Files
 .venv/**
 .env
