@@ -10,7 +10,7 @@ class PageService():
   
     def translateBasePDF(self):
         try:
-             dataDir="documents\\"
+            dataDir="documents\\"
             pdfList=os.listdir(dataDir+self.pdfDict[self.baseUrl])
             print(pdfList)
 

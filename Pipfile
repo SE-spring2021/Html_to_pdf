@@ -9,6 +9,8 @@ requests = "*"
 beautifulsoup4 = "*"
 weasyprint = "*"
 pyinstaller = "*"
+pdfkit = "*"
+pdfrw = "*"
 
 [dev-packages]
 
