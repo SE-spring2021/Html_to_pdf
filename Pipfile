@@ -8,6 +8,7 @@ kivy = {extras = ["base"], version = "*"}
 requests = "*"
 beautifulsoup4 = "*"
 weasyprint = "*"
+pyinstaller = "*"
 
 [dev-packages]
 
