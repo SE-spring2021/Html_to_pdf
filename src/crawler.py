@@ -56,9 +56,10 @@ class Crawler():
 def main():
     # crwl = Crawler("https://www.google.com")
     # crwl = Crawler("https://andersonsunflowers.com")
-    crwl = Crawler("https://www.shanelynn.ie/")
-    pages = crwl.download_pages(1)
-    print("test")
+    # crwl = Crawler("https://www.shanelynn.ie/")
+    pages = crwl.download_pages(2)
+    with open("CrawledHTML.html", "w") as f:
+            f.write(str(pages.htmlContent))
 
 if __name__ == "__main__":
         main()  

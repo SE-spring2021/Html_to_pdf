@@ -24,4 +24,4 @@ class HtmlModel():
         self.htmlContent = soup("html")
         for link in soup.find_all('a', attrs={'href': re.compile("^http(s)?://")}):
             self.links.add(link.get('href'))
-        print(self.url)
+        # print(self.url)
