@@ -14,7 +14,6 @@ class Crawler():
         self.sameDomain = sameDomain
         self.links_visited = set()
 
-
     def download_pages(self, level:int):
         pages = set()
         pages.add(self.rootPage)

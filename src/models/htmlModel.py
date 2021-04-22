@@ -20,8 +20,8 @@ class HtmlModel():
         soup = BeautifulSoup(respons.content, 'html.parser')
         if soup.title:
             self.title = soup.title.text
-        self.styles = soup("style")
-        self.htmlContent = soup("html")
+        # self.styles = soup("style")
+        # self.htmlContent = soup("html")
         for link in soup.find_all('a', attrs={'href': re.compile("^http(s)?://")}):
             self.links.add(link.get('href'))
         # print(self.url)
