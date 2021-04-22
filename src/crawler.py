@@ -56,8 +56,8 @@ class Crawler():
 def main():
     # crwl = Crawler("https://www.google.com")
     # crwl = Crawler("https://andersonsunflowers.com")
-    crwl = Crawler("https://www.shanelynn.ie/")
-    pages = crwl.download_pages(1)
+    crwl = Crawler("http://tinman.cs.gsu.edu/~raj/8711/sp21/")
+    pages = crwl.download_pages(2)
     print("test")
 
 if __name__ == "__main__":
