@@ -12,8 +12,7 @@ from kivy.properties import ObjectProperty
 from crawler import Crawler
 from helper import Helper
 from convertor import Convertor
-
-
+from pageService import PageService
 
 class ContainerGrid(GridLayout):
     digLevel = ObjectProperty(None)
@@ -32,6 +31,9 @@ class ContainerGrid(GridLayout):
         for page in rootPage.links:
             check,title,url = self.Conve.convertToPdf(str(page))
             pdfDict[url]=title
+        pageServiceHelper=PageService(self.baseUrl,pdfDict)
+
+        
         self.txtResults.text = "Downloaded Pages:\n\n" + Helper.printPagesTitles(rootPage)
         
 
