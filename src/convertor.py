@@ -9,6 +9,7 @@ class Convertor():
     def convertToPdf(self, html:str):
         abc = True
         try:
+   
             fil = "NoTitle"+str(random.randint(0,100))
             # making requests instance
             reqs = requests.get(html)
