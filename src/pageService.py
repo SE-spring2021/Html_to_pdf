@@ -1,29 +1,45 @@
-import PyPDF2
+import pdfrw
+import os
 
 class PageService():
+
+    def __init__(self,baseUrl):
+        self.baseUrl=baseUrl
+        self.translateLinks()
   
     def translateLinks(self):
-        PDFFile = open("Raj Sunderraman's Home Page.pdf",'rb')
+        checkUrl=self.baseUrl.replace("/","")
+        checkUrl=checkUrl.replace(":","")
+        print(checkUrl)
 
-        PDF = PyPDF2.PdfFileReader(PDFFile)
-        pages = PDF.getNumPages()
-        key = '/Annots'
-        uri = '/URI'
-        ank = '/A'
+        dataDir="..\\output\\"
+        pdfList=os.listdir(dataDir)
+        print(pdfList)
 
-        for page in range(pages):
-            print("Current Page: {}".format(page))
-            pageSliced = PDF.getPage(page)
-            pageObject = pageSliced.getObject()
-            if key in pageObject.keys():
-                ann = pageObject[key]
-                for a in ann:
-                    # print(a)
-                    u = a.getObject()
-                    print(u)
-                    # if uri in u[ank].keys():
-                    #     print(u[ank][uri])
+        pdf = pdfrw.PdfReader(dataDir+checkUrl+".pdf")
+        new_pdf = pdfrw.PdfWriter()
 
+        for page in pdf.pages: 
+            for annot in page.Annots or []:
+                old_url = annot.A.URI
+                
+                checkOldUrl=old_url.replace("/","")
+                checkOldUrl=checkOldUrl.replace(":","")
+                checkOldUrl=checkOldUrl.replace("(","")
+                checkOldUrl=checkOldUrl.replace(")","")
+                checkOldUrl=checkOldUrl.replace("httpwww.","")
+                print(checkOldUrl)
+                if(checkOldUrl+".pdf" in pdfList):
+                    print("Inside")
+                    print(checkOldUrl+".pdf")
+                    
+                    outUrl="("+checkOldUrl+".pdf)"
+                    new_url = pdfrw.objects.pdfstring.PdfString("(gsu.pdf)")
+                    annot.A.URI = new_url
+
+            new_pdf.addpage(page)    
+
+        new_pdf.write(dataDir+checkUrl+".pdf")
+        
 if __name__=="__main__":
-    pageServiceHelper=PageService()
-    pageServiceHelper.translateLinks()
+    pageServiceHelper=PageService("http://tinman.cs.gsu.edu/~raj/")
