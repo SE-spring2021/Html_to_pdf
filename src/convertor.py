@@ -9,25 +9,33 @@ CWD =  os.getcwd()
 class Convertor():
 
 
-    def convertToPdf(self, html:str):
+    def convertToPdf(self, html:str,url:str):
         abc = True
         try:
-   
+            folder = url.replace("/","")
+            folder = folder.replace("\\","")
+            folder = folder.replace(":","")
+            folder = folder.replace(".","")
             fil = "NoTitle"+str(random.randint(0,100))
-            # making requests instance
             reqs = requests.get(html)
-            # using the BeaitifulSoup module
             soup = BeautifulSoup(reqs.text, 'html.parser')
             for title in soup.find_all('title'):
                 fil = title.get_text()
                 break
+
+            fil = fil.replace("/","")
+            fil = fil.replace(":","")
+            fil = fil.replace("|","")
             config = pdfkit.configuration(wkhtmltopdf= CWD + "\\src\\wkhtmltopdf.exe")
-            pdfkit.from_url(html,CWD+'\\documents\\'+fil+'.pdf', configuration=config)
+            if not os.path.exists('documents'+'/'+folder):
+                os.makedirs('documents'+'/'+folder)
+            pdfkit.from_url(html,CWD+'\\documents\\'+folder+'/'+fil+'.pdf', configuration=config)
             abc = False
         except Exception as e:
-            print('error')
+            print(e)
             abc = True
-        return abc
+        return abc,fil
+
 
 def main():
     conv = Convertor()
