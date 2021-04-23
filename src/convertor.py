@@ -27,7 +27,7 @@ class Convertor():
             config = pdfkit.configuration(wkhtmltopdf= "wkhtmltopdf.exe")
             if not os.path.exists('documents'+'/'+folder):
                 os.makedirs('documents'+'/'+folder)
-            pdfkit.from_url(html,CWD+'\\documents\\'+folder+'/'+fil+'.pdf', configuration=config)
+            pdfkit.from_url(html,'\\documents\\'+folder+'/'+fil+'.pdf', configuration=config)
             abc = False
         except Exception as e:
             print(e)
