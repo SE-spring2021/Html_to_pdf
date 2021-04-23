@@ -29,7 +29,7 @@ class ContainerGrid(GridLayout):
         rootPage = self.crwl.download_pages(int(self.digLevel.text))
         print(rootPage)
         for page in rootPage.links:
-            check,title = self.Conve.convertToPdf(str(page),str(rootPage.url))
+            check,title = self.Conve.convertToPdf(str(page),self.baseUrl.text)
             pdfDict[str(page)]=title
         print(pdfDict)
         check,title = self.Conve.convertToPdf(str(rootPage.url),str(rootPage.url))
