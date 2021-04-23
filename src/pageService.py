@@ -12,7 +12,9 @@ class PageService():
         try:
             print("Inside Page Service")
             dataDir="documents\\"
-            pdfList=os.listdir(dataDir+self.pdfDict[self.baseUrl])
+            baseFolder=self.pdfDict[self.baseUrl].replace("/","")
+            baseFolder=baseFolder.replace(":","")
+            pdfList=os.listdir(dataDir+baseFolder)
             print(pdfList)
 
             pdf = pdfrw.PdfReader(dataDir+self.pdfDict[self.baseUrl]+".pdf")
@@ -31,7 +33,7 @@ class PageService():
                 new_pdf.addpage(page)    
 
             new_pdf.write(dataDir+self.pdfDict[self.baseUrl]+".pdf")
-            if(self.translatePDFs(dataDir,pdfList)):
+            if(self.translatePDFs(dataDir+baseFolder,pdfList)):
                 return True
             else:
                 return False
@@ -41,6 +43,7 @@ class PageService():
 
     def translatePDFs(self,dataDir,pdfList):
         try:
+            print("Inside translatePDFs")
             for url,title in self.pdfDict.items():
                 if(title!=self.pdfDict[self.baseUrl] and title in pdfList):
                     pdf = pdfrw.PdfReader(dataDir+title+".pdf")
