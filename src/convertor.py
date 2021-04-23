@@ -4,8 +4,6 @@ import random
 from bs4 import BeautifulSoup
 import os
 
-CWD =  os.getcwd()
-
 class Convertor():
 
 
@@ -26,7 +24,7 @@ class Convertor():
             fil = fil.replace("/","")
             fil = fil.replace(":","")
             fil = fil.replace("|","")
-            config = pdfkit.configuration(wkhtmltopdf= CWD + "\\src\\wkhtmltopdf.exe")
+            config = pdfkit.configuration(wkhtmltopdf= "wkhtmltopdf.exe")
             if not os.path.exists('documents'+'/'+folder):
                 os.makedirs('documents'+'/'+folder)
             pdfkit.from_url(html,CWD+'\\documents\\'+folder+'/'+fil+'.pdf', configuration=config)
