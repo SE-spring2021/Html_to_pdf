@@ -12,7 +12,9 @@ class PageService():
         try:
             print("Inside Page Service")
             dataDir="documents\\"
-            pdfList=os.listdir(dataDir+self.pdfDict[self.baseUrl])
+            baseFolder=self.pdfDict[self.baseUrl].replace("/","")
+            baseFolder=baseFolder.replace(":","")
+            pdfList=os.listdir(dataDir+baseFolder)
             print(pdfList)
 
             pdf = pdfrw.PdfReader(dataDir+self.pdfDict[self.baseUrl]+".pdf")
