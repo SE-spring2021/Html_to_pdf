@@ -10,10 +10,7 @@ class PageService():
   
     def translateBasePDF(self):
         try:
-<<<<<<< Updated upstream
-=======
             print("Inside Page Service")
->>>>>>> Stashed changes
             dataDir="documents\\"
             pdfList=os.listdir(dataDir+self.pdfDict[self.baseUrl])
             print(pdfList)
