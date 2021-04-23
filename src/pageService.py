@@ -13,7 +13,9 @@ class PageService():
             print("Inside Page Service")
             dataDir="documents\\"
             baseFolder=self.pdfDict[self.baseUrl].replace("/","")
-            baseFolder=baseFolder.replace(":","")
+            baseFolder = baseFolder.replace("\\","")
+            baseFolder = baseFolder.replace(":","")
+            baseFolder = baseFolder.replace(".","")
             pdfList=os.listdir(dataDir+baseFolder)
             print(pdfList)
 
