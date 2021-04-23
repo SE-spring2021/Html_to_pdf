@@ -33,7 +33,6 @@ class ContainerGrid(GridLayout):
             pdfDict[str(page)]=title
         check,title = self.Conve.convertToPdf(str(rootPage.url),str(rootPage.url))
         pdfDict[str(rootPage.url)]=title
-        print(pdfDict)
         pageServiceHelper=PageService(self.baseUrl,pdfDict)
 
         
